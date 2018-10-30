@@ -1,0 +1,2 @@
+- New version of trufflfe@next and ganache
+- New ganache version runs on 7545 port so you can use both new and old ganache versions
