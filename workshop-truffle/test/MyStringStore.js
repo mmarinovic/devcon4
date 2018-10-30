@@ -1,15 +1,15 @@
-const MyStringStore = artifacts.require('MyStringStore');
+const MyStringStore = artifacts.require("./MyStringStore.sol");
 
 contract("MyStringStore", accounts => {
+  it("should store the string 'Hey there!'", async () => {
+    const myStringStore = await MyStringStore.deployed();
 
-    it("should store non empty string", async () => {
+    // Set myString to "Hey there!"
+    await myStringStore.set("Hey there!", { from: accounts[0] });
 
-        const myStringStore = await MyStringStore.deployed();
+    // Get myString from public variable getter
+    const storedString = await myStringStore.myString.call();
 
-        await myStringStore.set("Hey there", { from: accounts[0] });
-
-        const storedString = await myStringStore.myString.call();
-
-        assert.equal(storedString, "Hey there", "The string was posted");
-    })
+    assert.equal(storedString, "Hey there!", "The string was not stored");
+  });
 });
