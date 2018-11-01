@@ -1,0 +1,1828 @@
+{
+  "contractName": "PackageRegistryInterface",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "manifestURI",
+          "type": "string"
+        }
+      ],
+      "name": "release",
+      "outputs": [
+        {
+          "name": "releaseId",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "packageId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getPackageName",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "offset",
+          "type": "uint256"
+        },
+        {
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAllPackageIds",
+      "outputs": [
+        {
+          "name": "ids",
+          "type": "bytes32[]"
+        },
+        {
+          "name": "_offset",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "type": "uint256"
+        },
+        {
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAllReleaseIds",
+      "outputs": [
+        {
+          "name": "ids",
+          "type": "bytes32[]"
+        },
+        {
+          "name": "_offset",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "releaseId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getReleaseData",
+      "outputs": [
+        {
+          "name": "packageName",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "manifestURI",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        }
+      ],
+      "name": "generateReleaseId",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\npragma experimental \"v0.5.0\";\n\n\n/// @title EIP 1319 Smart Contract Package Registry Interface\n/// @author Piper Merriam <pipermerriam@gmail.com>, Christopher Gewecke <christophergewecke@gmail.com>\ncontract PackageRegistryInterface {\n\n  //\n  // +-------------+\n  // |  Write API  |\n  // +-------------+\n  //\n\n  /// @dev Creates a a new release for the named package.\n  /// @notice Will create a new release the given package with the given release information.\n  /// @param name Package name\n  /// @param version Version string (ex: 1.0.0)\n  /// @param manifestURI The URI for the release manifest for this release.\n  function release(\n    string name,\n    string version,\n    string manifestURI\n  )\n    public\n    returns (bytes32 releaseId);\n\n  //\n  // +------------+\n  // |  Read API  |\n  // +------------+\n  //\n\n  /// @dev Returns the string name of the package associated with a package id\n  /// @param packageId The package id to look up\n  function getPackageName(bytes32 packageId)\n    public\n    view\n    returns (string);\n\n  /// @dev Returns a slice of the array of all package ids for the named package.\n  /// @param offset The starting index for the slice.\n  /// @param limit  The length of the slice\n  function getAllPackageIds(uint offset, uint limit)\n    public\n    view\n    returns (\n      bytes32[] ids,\n      uint _offset\n    );\n\n  /// @dev Returns a slice of the array of all release hashes for the named package.\n  /// @param name Package name\n  /// @param offset The starting index for the slice.\n  /// @param limit  The length of the slice\n  function getAllReleaseIds(string name, uint offset, uint limit)\n    public\n    view\n    returns (\n      bytes32[] ids,\n      uint _offset\n    );\n\n  /// @dev Returns the package data for a release.\n  /// @param releaseId Release id\n  function getReleaseData(bytes32 releaseId)\n    public\n    view\n    returns (\n      string packageName,\n      string version,\n      string manifestURI\n    );\n\n  // @dev Returns release id that *would* be generated for a name and version pair on `release`.\n  // @param name Package name\n  // @param version Version string (ex: '1.0.0')\n  function generateReleaseId(string name, string version)\n    public\n    view\n    returns (bytes32);\n}\n",
+  "sourcePath": "/Users/markomarinovic/Projects/Personal/devcon4/workshop-ether-package-manager/escape-truffle/contracts/PackageRegistryInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/markomarinovic/Projects/Personal/devcon4/workshop-ether-package-manager/escape-truffle/contracts/PackageRegistryInterface.sol",
+    "exportedSymbols": {
+      "PackageRegistryInterface": [
+        1636
+      ]
+    },
+    "id": 1637,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1570,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:5"
+      },
+      {
+        "id": 1571,
+        "literals": [
+          "experimental",
+          "v0.5.0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "25:29:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title EIP 1319 Smart Contract Package Registry Interface\n @author Piper Merriam <pipermerriam@gmail.com>, Christopher Gewecke <christophergewecke@gmail.com>",
+        "fullyImplemented": false,
+        "id": 1636,
+        "linearizedBaseContracts": [
+          1636
+        ],
+        "name": "PackageRegistryInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@dev Creates a a new release for the named package.\n @notice Will create a new release the given package with the given release information.\n @param name Package name\n @param version Version string (ex: 1.0.0)\n @param manifestURI The URI for the release manifest for this release.",
+            "id": 1582,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "release",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1578,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1573,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "664:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1572,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "664:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1575,
+                  "name": "version",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "681:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1574,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "681:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1577,
+                  "name": "manifestURI",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "701:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1576,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "701:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "658:65:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1581,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1580,
+                  "name": "releaseId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "748:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1579,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "748:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "747:19:5"
+            },
+            "scope": 1636,
+            "src": "642:125:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns the string name of the package associated with a package id\n @param packageId The package id to look up",
+            "id": 1589,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getPackageName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1584,
+                  "name": "packageId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1589,
+                  "src": "994:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1583,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "994:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "993:19:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1588,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1587,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1589,
+                  "src": "1046:6:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1586,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1046:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1045:8:5"
+            },
+            "scope": 1636,
+            "src": "970:84:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns a slice of the array of all package ids for the named package.\n @param offset The starting index for the slice.\n @param limit  The length of the slice",
+            "id": 1601,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getAllPackageIds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1594,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1591,
+                  "name": "offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1264:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1590,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1264:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1593,
+                  "name": "limit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1277:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1592,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1277:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1263:25:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1600,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1597,
+                  "name": "ids",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1329:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1595,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1329:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 1596,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1329:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1599,
+                  "name": "_offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1350:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1598,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1350:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1321:47:5"
+            },
+            "scope": 1636,
+            "src": "1238:131:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns a slice of the array of all release hashes for the named package.\n @param name Package name\n @param offset The starting index for the slice.\n @param limit  The length of the slice",
+            "id": 1615,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getAllReleaseIds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1608,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1603,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1613:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1602,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1613:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1605,
+                  "name": "offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1626:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1604,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1626:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1607,
+                  "name": "limit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1639:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1606,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1639:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1612:38:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1614,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1611,
+                  "name": "ids",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1691:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1609,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1691:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 1610,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1691:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1613,
+                  "name": "_offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1712:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1612,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1712:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1683:47:5"
+            },
+            "scope": 1636,
+            "src": "1587:144:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns the package data for a release.\n @param releaseId Release id",
+            "id": 1626,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getReleaseData",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1618,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1617,
+                  "name": "releaseId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1844:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1616,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1844:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1843:19:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1625,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1620,
+                  "name": "packageName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1903:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1619,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1903:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1622,
+                  "name": "version",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1929:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1621,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1929:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1624,
+                  "name": "manifestURI",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1951:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1623,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1951:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1895:80:5"
+            },
+            "scope": 1636,
+            "src": "1820:156:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1635,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "generateReleaseId",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1631,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1628,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1635,
+                  "src": "2183:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1627,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2183:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1630,
+                  "name": "version",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1635,
+                  "src": "2196:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1629,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2196:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2182:29:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1634,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1633,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1635,
+                  "src": "2245:7:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1632,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2245:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2244:9:5"
+            },
+            "scope": 1636,
+            "src": "2156:98:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1637,
+        "src": "222:2034:5"
+      }
+    ],
+    "src": "0:2257:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/markomarinovic/Projects/Personal/devcon4/workshop-ether-package-manager/escape-truffle/contracts/PackageRegistryInterface.sol",
+    "exportedSymbols": {
+      "PackageRegistryInterface": [
+        1636
+      ]
+    },
+    "id": 1637,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1570,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:5"
+      },
+      {
+        "id": 1571,
+        "literals": [
+          "experimental",
+          "v0.5.0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "25:29:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title EIP 1319 Smart Contract Package Registry Interface\n @author Piper Merriam <pipermerriam@gmail.com>, Christopher Gewecke <christophergewecke@gmail.com>",
+        "fullyImplemented": false,
+        "id": 1636,
+        "linearizedBaseContracts": [
+          1636
+        ],
+        "name": "PackageRegistryInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@dev Creates a a new release for the named package.\n @notice Will create a new release the given package with the given release information.\n @param name Package name\n @param version Version string (ex: 1.0.0)\n @param manifestURI The URI for the release manifest for this release.",
+            "id": 1582,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "release",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1578,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1573,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "664:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1572,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "664:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1575,
+                  "name": "version",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "681:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1574,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "681:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1577,
+                  "name": "manifestURI",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "701:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1576,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "701:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "658:65:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1581,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1580,
+                  "name": "releaseId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1582,
+                  "src": "748:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1579,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "748:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "747:19:5"
+            },
+            "scope": 1636,
+            "src": "642:125:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns the string name of the package associated with a package id\n @param packageId The package id to look up",
+            "id": 1589,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getPackageName",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1584,
+                  "name": "packageId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1589,
+                  "src": "994:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1583,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "994:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "993:19:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1588,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1587,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1589,
+                  "src": "1046:6:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1586,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1046:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1045:8:5"
+            },
+            "scope": 1636,
+            "src": "970:84:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns a slice of the array of all package ids for the named package.\n @param offset The starting index for the slice.\n @param limit  The length of the slice",
+            "id": 1601,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getAllPackageIds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1594,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1591,
+                  "name": "offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1264:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1590,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1264:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1593,
+                  "name": "limit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1277:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1592,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1277:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1263:25:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1600,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1597,
+                  "name": "ids",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1329:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1595,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1329:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 1596,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1329:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1599,
+                  "name": "_offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1601,
+                  "src": "1350:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1598,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1350:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1321:47:5"
+            },
+            "scope": 1636,
+            "src": "1238:131:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns a slice of the array of all release hashes for the named package.\n @param name Package name\n @param offset The starting index for the slice.\n @param limit  The length of the slice",
+            "id": 1615,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getAllReleaseIds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1608,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1603,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1613:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1602,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1613:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1605,
+                  "name": "offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1626:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1604,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1626:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1607,
+                  "name": "limit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1639:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1606,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1639:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1612:38:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1614,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1611,
+                  "name": "ids",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1691:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1609,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1691:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 1610,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1691:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1613,
+                  "name": "_offset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1615,
+                  "src": "1712:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1612,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1712:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1683:47:5"
+            },
+            "scope": 1636,
+            "src": "1587:144:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": "@dev Returns the package data for a release.\n @param releaseId Release id",
+            "id": 1626,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getReleaseData",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1618,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1617,
+                  "name": "releaseId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1844:17:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1616,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1844:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1843:19:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1625,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1620,
+                  "name": "packageName",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1903:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1619,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1903:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1622,
+                  "name": "version",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1929:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1621,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1929:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1624,
+                  "name": "manifestURI",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1626,
+                  "src": "1951:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1623,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1951:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1895:80:5"
+            },
+            "scope": 1636,
+            "src": "1820:156:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1635,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "generateReleaseId",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1631,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1628,
+                  "name": "name",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1635,
+                  "src": "2183:11:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1627,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2183:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1630,
+                  "name": "version",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1635,
+                  "src": "2196:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1629,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2196:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2182:29:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1634,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1633,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1635,
+                  "src": "2245:7:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1632,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2245:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2244:9:5"
+            },
+            "scope": 1636,
+            "src": "2156:98:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1637,
+        "src": "222:2034:5"
+      }
+    ],
+    "src": "0:2257:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-11-01T12:27:35.536Z"
+}
