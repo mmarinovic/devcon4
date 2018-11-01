@@ -1,0 +1,19 @@
+{
+    "name": "development-demo",
+    "version": "0.0.1",
+    "description": "Devcon IV Security Dev Demo",
+    "main": "truffle-config.js",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {
+        "ganache-cli": "6.1.0",
+        "openzeppelin-solidity": "1.10.0",
+        "solidity-coverage": "0.5.4",
+        "truffle": "4.1.11"
+    },
+    "scripts": {
+        "test": "./node_modules/.bin/truffle test",
+        "test-cov": "./node_modules/.bin/solidity-coverage"
+    }
+}
